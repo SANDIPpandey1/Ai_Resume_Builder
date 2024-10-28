@@ -13,6 +13,7 @@ import {
 import { Input } from '@/components/ui/input';
 import GlobalApi from './../../../service/GlobalApi';
 import { useUser } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
 
 function AddResume() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -20,6 +21,7 @@ function AddResume() {
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const Navigation = useNavigate();
 
   const resetFormState = () => {
     setResumeTitle('');
@@ -49,6 +51,7 @@ function AddResume() {
         setLoading(false);
         setOpenDialog(false);
         resetFormState();
+        Navigation(`/dashboard/resume/${uuid}/edit`);
       }
     } catch (error) {
       setLoading(false);

@@ -18,8 +18,8 @@ function Dashboard() {
   const GetResumeList =()=>{
     GlobalApi.GetUserResumes(user?.primaryEmailAddress?.emailAddress)
     .then(resp=>{
-      console.log(resp.data);
-      setResumeList(resp.data);
+      
+      setResumeList(resp.data.data);
     }
     )
 
@@ -28,7 +28,7 @@ function Dashboard() {
     <div className='p-10 md:px-20 lg:px-32'>
       <h2 className='font-bold text-3xl'>My Resume</h2>
       <p>Create your resume with the help of AI</p>
-      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10'>
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10 gap-5'>
         <AddResume/>
         {resumeList.length>0&&resumeList.map((resume, index)=>(
           <ResumeCardItem resume={resume} key ={index}/>
